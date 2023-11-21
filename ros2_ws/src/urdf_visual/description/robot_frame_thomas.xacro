@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+    <xacro:include filename="inertial_macros.xacro"/>
+    <xacro:include filename="robot_macros.xacro"/>
+
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="0.5 0 0 1"/>
+    </material>
+    
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1" />
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1" />
+    </material>
+
+
+    <link name="base_link">
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.16 0.16 0.1650"/>
+        </geometry>
+        <material name="white"/>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="0.16 0.16 0.1650"/>
+            </geometry>
+        </collision>
+
+        <xacro:inertial_box mass="5" x="0.16" y="0.16" z="0.165">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <link name="base_footprint">
+    </link>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Left wheel -->
+    <link name="left_wheel">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="0.034" length="0.027"/>
+        </geometry>
+        <material name="black"/>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="0.034" length="0.027"/>
+        </geometry>
+    </collision>
+
+    <xacro:inertial_cylinder mass="0.2" radius="0.034" length="0.027">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder> 
+    </link>
+
+    <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+        <origin xyz="0.035 0.08 -0.082" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!-- Right wheel -->
+    <link name="right_wheel">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="0.034" length="0.027"/>
+        </geometry>
+        <material name="black"/>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="0.034" length="0.027"/>
+        </geometry>
+    </collision>
+
+    <xacro:inertial_cylinder mass="0.2" radius="0.034" length="0.027">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder> 
+    </link>
+
+    <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+        <origin xyz="0.035 -0.08 -0.082" rpy="${pi/2} 0 0"/>
+        <axis xyz="0 0 -1"/>
+    </joint>
+
+    <joint name="castor_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="castor_wheel"/>
+        <origin xyz="-0.075 0 -0.082"/>
+    </joint>
+
+    <link name="castor_wheel">
+        <visual>
+            <geometry>
+                <sphere radius = "0.034"/>
+            </geometry>
+            <material name="orange"/>
+        </visual>
+    </link>
+
+</robot>

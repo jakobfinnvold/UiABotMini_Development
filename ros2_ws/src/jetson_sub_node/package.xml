@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>jetson_sub_node</name>
+  <version>2.6.0</version>
+  <description>Geometry msg Subscriber for Jetson</description>
+
+  <maintainer email="jakobuf@uia.no">Jakob Finnvold</maintainer>
+
+  <license>BSD</license>
+
+  <author email="jakobuf@uia.no">Jakob Finnvold</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+
+  <depend>geometry_msgs</depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_components</depend>
+  <depend>rclpy</depend> 
+  <depend>sensor_msgs</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <test_depend>launch_ros</test_depend>
+  <test_depend>launch_testing_ament_cmake</test_depend>
+  <test_depend>launch_testing_ros</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+
